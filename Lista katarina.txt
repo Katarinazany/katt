@@ -1,0 +1,316 @@
+questao 1
+#include<stdio.h>
+#include<math.h>
+main(){
+   
+	float peso,altura,imc;
+printf("Digite o peso: \n");
+scanf("%f",&peso);
+printf("Digite a altura: \n");
+scanf("%f",&altura);
+
+altura = pow(altura,2);
+imc = peso/altura;
+printf("imc = %f \n",imc);
+
+  if(imc<18,5){
+		printf("abaixo do peso \n");
+}else if(imc>18,5 && imc<25){
+	printf("peso normal \n");
+}else if (imc<25 && imc>30){
+	printf("acima do peso");
+}else if(imc <30){
+	printf("obeso");
+}
+return 0;
+
+}
+	
+}
+
+
+questao 2
+
+#include<stdio.h>
+main(){
+	int num;
+
+	printf("seleciona o digito referente ao estado--> am (1) - rj(2) - sp(3) - outros(4) \n");
+	scanf("%d",&num);
+	 
+switch (num){
+		case 1:
+		printf("Amazonense");
+		break;
+
+		case 2:
+		printf("Carioca");
+		break;
+
+		case 3:
+		printf("Paulista");
+		break;
+
+		case 4:
+		printf("Outros estados");
+		break;
+
+}
+}
+
+
+questao 3
+#include <stdio.h>
+#include <stdlib.h>
+
+void main(){
+        char nome[50];
+        char sexo ;
+        int idade;
+
+        printf("PROGRAMA APENAS PARA MULHERES \n \n Digita o nome\n  sexo  \n idade \n");
+        scanf("%s %s %d",&nome, &sexo, &idade);
+        
+        printf("Nome : %s \n",nome);
+        printf("Sexo: %s \n",sexo);
+        printf("Idade: %d \n ",idade);
+        
+		}
+
+
+questao 4
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <windows.h>
+#define tam 50
+
+struct Pizza{
+	char NomePizza[30];
+	char IngredientePizza[50];
+	int ValorPizza;
+	int CodigoPizza;
+}cadastropizza[tam];
+
+struct Pedido{
+	char PedidoCliente[30];
+	int PedidoCodigo;
+	char PedidoEndereco[100];
+}cadastropedido[tam];
+
+int main (){
+	
+	//--------------------------------------PRINCIPAIS---------------------------------------------------------------------------
+	char login1[10],logadm[10]="adm123",logfuncionario[10]="func",endfuncionario,endadm; //Variaveis Base Do Programa
+	char TelaAdm, TelaFunc, end1a, end2a, end3a, end4a, end5a, end1f, end2f, end3f;		//Controle De Painel Principal
+	//--------------------------------------SECUNDARIO---------------------------------------------------------------------------
+	int ContADM=1,ContFunc=1 , ContCadastro=1,ContSabores=1,ContBebida=1,CadastroNumero=1;
+	char TelaCadastroADM,TelaEstoqueADM,TelaControleDeVendas,TelaClienteADM,VerificadorPedido,TelaCadastroCliente;
+	char TelaCadastroSabor,TelaCadastroBebida,TelaCadastroFuncionario,endEstoqueADM,endseeEstoque,endaddEstoque,TelaCadastroMateriaPrima,
+	FeedbackNome[50],FeedbackElogio[200],CadastroNome[50],CadastroEndereco[200],CadastroCPF[12],maisproduto;
+	int total = 0;
+	char a;
+		
+	int p = 0,b = 0,f = 0,m = 0,c = 0,pd = 0,e = 0,produto = 0;
+	int i = 0,j = 0; //Variavel Padrão
+	
+//ignorar as variaveis, pois picotei o programa para ser mais fácil a visualização do problema @@@@@@@@@@@@@@@@@@@@@@@
+
+	do{
+								system("cls");
+								printf("CADASTRO DE NOVO SABOR DE PIZZA!\n");
+								printf("Faca Com Amor E Carinho!\n\n");
+								
+								printf("Nome Da Pizza:");
+								scanf("\n%[^\n]s",&cadastropizza[p].NomePizza);
+								
+								printf("\nIngredientes Da Pizza:");
+								scanf("\n%[^\n]s",&cadastropizza[p].IngredientePizza);
+								
+								printf("\nValor Da Pizza: R$");
+								scanf("%d",&cadastropizza[p].ValorPizza);
+								
+								printf("\nCodigo Da Pizza:");
+								scanf("\n%[^\n]s",&cadastropizza[p].CodigoPizza);
+								
+							
+								
+							    p++;
+								printf("\nDeseja Cadastrar Mais Um Sabor? (s/n)");
+								scanf(" %c",&TelaCadastroSabor);
+								
+							}while(TelaCadastroSabor!='n');
+
+do{	
+						system("cls");								
+
+						produto=0;
+						total = 0;
+						do{
+							system("cls");				
+							printf("PEDIDOS\n");
+							
+							printf("\nNome Cliente:");
+							scanf("\n%[^\n]s",&cadastropedido[pd].PedidoCliente);
+							do{
+								printf("\nCodigo Dos Produtos:");
+								scanf("%d",&cadastropedido[produto].PedidoCodigo);
+								printf("\nMais Produtos?(s/n)");
+								scanf(" %c",&maisproduto);
+								produto++;
+								
+							}while(maisproduto!='n');
+							
+							printf("\nEndereco Do Cliente(caso, comer no local = 0):");
+							scanf("\n%[^\n]s",&cadastropedido[pd].PedidoEndereco);
+							
+							printf("\n\n\nNome Do Cliente:%s \nProdutos Pedidos:%d \nEndereco:%s",cadastropedido[pd].PedidoCliente,cadastropedido[pd].PedidoCodigo,cadastropedido[pd].PedidoEndereco);
+							
+							pd++;
+							printf("\n\nFinalizar Pedido? (s/n)");
+							scanf(" %c",&VerificadorPedido);
+						}while(VerificadorPedido!='s');
+						
+						//funcaopedido
+						for(i=0;i<produto;i++){
+							for(j=0;j<tam;j++){
+								if(cadastropedido[i].PedidoCodigo == cadastropizza[j].CodigoPizza){
+									total = total + cadastropizza[j].ValorPizza;
+								
+								}
+							}
+						}
+						
+						printf("\n\nTOTAL: %d",total);
+						printf("\nDeseja Fazer Outro Pedido? (s/n)");
+						scanf(" %c",&end1f);
+					}while(end1f!='n');
+  return 0;
+}
+
+
+questao 5
+#include<stdio.h>
+main(){
+   int a=20,b=11,result;
+
+result=a-b;
+printf("numero de dias que necessita para percorrer 18m:%d",result);
+
+}
+
+
+
+questao 6
+
+#include <stdio.h>
+#include<stdlib.h>
+main(){
+	
+	int a=0,b=0,c=0,d=0;
+	int i=0;
+	
+	while(i>=0){
+		printf("Digite um numero: \n");
+		scanf("%d",&i);
+		if(i>=0 && i<=25){
+			a=a+1;	
+		}else if(i>=26 && i<=50){
+			b=b+1;
+		}else if(i>=51 && i<=75){
+			c++;
+		}else if(i>=76 && i<=100){
+			d++;
+		}
+	}
+		printf("[0~25]= %d \n",a);
+		printf("[26~50]= %d \n",b);
+		printf("[51~75]= %d \n",c);
+		printf("[76~100]= %d \n",d);
+		
+	
+	return 0;
+	
+}
+        
+    
+questão 7
+ #include<stdio.h>
+main(){
+	int num,result;
+
+	whille(num != 100){
+
+
+printf("insira o numero \n");
+scanf("%d%,&num);
+
+result = num%3;
+if(num%3 == 0){
+	printf("multiplo de 3 \n");
+	}else {
+		printf("nao e multiplo de 3 \n");
+}
+}
+}
+}
+
+
+questão 8
+
+#include<stdio.h>
+main(){
+int num=0;
+
+do{
+
+for(num=4;num<100;num++){
+prinft("insira um numero: \n");
+scanf("%d",&num);
+}
+	
+}while(num<5)
+
+return 0;
+}
+
+
+questão 9
+#include <stdio.h>
+
+main(){
+   
+   int soma=0;
+for(int i=15; i<250; i++){
+
+	if(i%2==1 && i%3==0){
+	soma=soma+i;
+/*caso queira checar a soma dos numeros	printf(" \n i: %d",i); */
+}
+	printf("\n Soma dos numeros impares e multiplos de 6 entre 15 e 250: %d",soma);
+
+}
+
+    return 0;
+}
+
+/*fim questao 9 */
+
+
+
+questao 10
+
+#include<stdio.h>
+main(){
+		int num,result;
+
+           Printf("insira um numero de 1 a 10 \n");
+		scanf("%d",&num);
+		printf("seu numero foi : %d",num);
+		printf("vou somar com 1 \n");
+		result=num+1;
+		printf("seu valor agora é : %d",result);
+resturn 0;
+}
+
